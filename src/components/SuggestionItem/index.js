@@ -2,11 +2,11 @@
 import './index.css'
 
 const SuggestionItem = props => {
-  const {eachItems} = props
+  const {eachItems, updateSuggestionInInputEle} = props
   const {suggestion} = eachItems
 
   const onClikingArrow = () => {
-    console.log('Hi')
+    updateSuggestionInInputEle(suggestion)
   }
 
   return (

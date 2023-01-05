@@ -10,11 +10,15 @@ class GoogleSuggestions extends Component {
     this.setState({searchInput: event.target.value})
   }
 
+  updateSuggestionInInputEle = value => {
+    this.setState({searchInput: value})
+  }
+
   render() {
     const {searchInput} = this.state
     const {suggestionsList} = this.props
     const searchInputFiltered = suggestionsList.filter(eachList =>
-      eachList.suggestion.includes(searchInput),
+      eachList.suggestion.toLowerCase().includes(searchInput.toLowerCase()),
     )
 
     return (
@@ -32,7 +36,7 @@ class GoogleSuggestions extends Component {
               className="search-icon-size"
             />
             <input
-              type="text"
+              type="search"
               className="search-input-size"
               placeholder="Search google"
               value={searchInput}
@@ -44,6 +48,7 @@ class GoogleSuggestions extends Component {
               <SuggestionItem
                 eachItems={eachListItems}
                 key={eachListItems.id}
+                updateSuggestionInInputEle={this.updateSuggestionInInputEle}
               />
             ))}
           </ul>
